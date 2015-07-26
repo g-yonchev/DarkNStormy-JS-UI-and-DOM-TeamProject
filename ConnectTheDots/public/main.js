@@ -1,6 +1,6 @@
 var btn = document.getElementById('btn');
 
-btn.addEventListener('click', function() {
+btn.addEventListener('click', function () {
 
     var input = document.getElementById('info');
     var rows = +input.value + 1;
@@ -13,16 +13,16 @@ btn.addEventListener('click', function() {
     var players = [{
         color: 'red',
         points: 0
-    },{
-        color: 'blue',
-        points: 0
-    },{
-        color: 'green',
-        points: 0
     }, {
-        color: 'purple',
-        points: 0
-    }];
+            color: 'blue',
+            points: 0
+        }, {
+            color: 'green',
+            points: 0
+        }, {
+            color: 'purple',
+            points: 0
+        }];
 
     var playersCount = players.length;
     var currentPlayerTurn = 0;
@@ -33,7 +33,7 @@ btn.addEventListener('click', function() {
     var socket = io();
     var currentLineId = -1;
 
-    var generateGrid = (function grid (rows, cols) {
+    var generateGrid = (function grid(rows, cols) {
         var pathsIDs = 0;
 
         for (var i = 1; i <= rows; i++) {
@@ -64,8 +64,8 @@ btn.addEventListener('click', function() {
         function createLine(x, y, len, type) {
             var path = 'M' + x + ' ' + y + ' ' + type + len;
             var line = paper.path(path)
-            line.attr({stroke: 'lightgray'});
-            line.attr({'stroke-width': '4'});
+            line.attr({ stroke: 'lightgray' });
+            line.attr({ 'stroke-width': '4' });
             line.node.id = ++pathsIDs;
         }
 
@@ -83,10 +83,10 @@ btn.addEventListener('click', function() {
     var generateIds = (function generateIds(rows, cols) {
         var lineOneStart = 1;
         var lineTwoStart = rows;
-        var lineThreeStart = (rows * cols) - (cols -1);
+        var lineThreeStart = (rows * cols) - (cols - 1);
         var lineFourStart = lineThreeStart + 1;
 
-        for (var i = 1; i <= (rows -1) * (cols - 1); i++) {
+        for (var i = 1; i <= (rows - 1) * (cols - 1); i++) {
 
             var squaresLines = [lineOneStart, lineTwoStart, lineThreeStart, lineFourStart];
             var square = {
@@ -159,6 +159,7 @@ btn.addEventListener('click', function() {
 
         function addLineToSquare(id) {
             squares.forEach(function (currentSquare) {
+
                 if (!currentSquare.lines.length) {
                     return;
                 }
@@ -189,10 +190,19 @@ btn.addEventListener('click', function() {
                     //alert('x: ' + x + ' y: ' + y);
                     var rectToFill = paper.rect(x, y, 40, 40);
 
+                    var colorToUse = players[currentPlayerTurn].color;
 
-                    rectToFill.attr({
-                        fill: players[currentPlayerTurn].color
+                    socket.emit('rect color', colorToUse);
+                    console.log();
+
+                    socket.on('rect color', function (color) {
+                        if (rectToFill.attr('fill') == 'none') {
+                            rectToFill.attr({
+                                fill: color
+                            });
+                        }
                     });
+
 
                     players[currentPlayerTurn].points++;
 

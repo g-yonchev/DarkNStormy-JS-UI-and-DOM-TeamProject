@@ -15,5 +15,10 @@ io.on('connection', function(socket){
     console.log('id: ' + id);
     io.emit('id',id);
   });
+  
+  socket.on('rect color',function(color) {
+    console.log('color: ' + color);
+    io.emit('rect color',color);
+  });
 });
 
