@@ -1,12 +1,13 @@
-var rows = 5;
-var cols = 5;
+var paper = Raphael('svg-container', 600, 600);
+
+var rows = 3;
+var cols = 3;
 var squares = [];
 
 var socket = io();
 var currentLineId = -1;
 
 var generateGrid = (function grid (rows, cols) {
-    var paper = Raphael('svg-container', 600, 600);
     var pathsIDs = 0;
 
     for (var i = 1; i <= rows; i++) {
@@ -62,9 +63,9 @@ var generateIds = (function generateIds(rows, cols) {
     for (var i = 1; i <= (rows -1) * (cols - 1); i++) {
 
         var squaresLines = [lineOneStart, lineTwoStart, lineThreeStart, lineFourStart];
-
         var square = {
-            lines: squaresLines
+            lines: squaresLines,
+            topLineId: lineOneStart
         };
 
         lineOneStart++;
@@ -76,15 +77,17 @@ var generateIds = (function generateIds(rows, cols) {
             lineThreeStart++;
             lineFourStart++;
         }
-        squares.push(square);
+
+    squares.push(square);
     }
 });
+
 generateIds(rows, cols);
 
 (function socket(socket, currentLineID) {
 
     function mouseOver() {
-        $(this).attr({ stroke: 'green' });
+        $(this).attr({ stroke: '#53533F' });
         $(this).attr({ 'stroke-width': '5' });
         //console.log($(this).attr('id'));
     }
@@ -95,6 +98,7 @@ generateIds(rows, cols);
     }
 
     function clicked() {
+
         $(this).attr({ stroke: 'red' });
         $(this).attr({ 'stroke-width': '5' });
         $(this).unbind("mouseover", mouseOver);
@@ -106,8 +110,8 @@ generateIds(rows, cols);
         socket.emit('id',currentLineID);
 
         socket.on('id',function (id) {
-            console.log(id);
             addLineToSquare(id);
+
         });
         //console.log(squares[0]);
     }
@@ -115,13 +119,12 @@ generateIds(rows, cols);
     socket.emit('id',currentLineID);
 
     socket.on('id',function (id) {
-        console.log(id);
         addLineToSquare(id);
+
     });
 
     function addLineToSquare(id) {
         squares.forEach(function (currentSquare) {
-
             if (!currentSquare.lines.length) {
                 return;
             }
@@ -131,7 +134,6 @@ generateIds(rows, cols);
             if (indexOfId >= 0) {
                 //console.log(currentSquare);
                 currentSquare.lines.splice(indexOfId, 1);
-                console.log(squares[0]);
                 //console.log(currentSquare);
 
                 $('#' + id).unbind("mouseover", mouseOver);
@@ -143,7 +145,23 @@ generateIds(rows, cols);
 
             if (!currentSquare.lines.length) {
                 // THE SQUARE HAS ALL SIDES FILLED, NEED TO CONTINUE THE LOGIC
-                console.log('IT WORKS');
+                console.log(currentSquare)
+
+                var currentTopLineId = currentSquare.topLineId;
+
+                var $currentLine = $('#' + currentTopLineId);
+                var $position = $currentLine.position();
+
+
+                var x = $position.left;
+                var y = $position.top;
+
+                var rectToFill = paper.rect(x, y, 40, 40);
+
+                rectToFill.attr({
+                    fill: 'purple',
+                });
+
                 //console.log(currentSquare);
                 //console.log(id);
             }
