@@ -1,7 +1,12 @@
 var paper = Raphael('svg-container', 600, 600);
 
-var rows = 3;
-var cols = 3;
+var playersColors = ['red', 'blue', 'green', 'purple'];
+var playersCount = playersColors.length;
+var currentPlayerTurn = 0;
+var isPlayerAgain = false;
+
+var rows = 8;
+var cols = 8;
 var squares = [];
 
 var socket = io();
@@ -99,7 +104,7 @@ generateIds(rows, cols);
 
     function clicked() {
 
-        $(this).attr({ stroke: 'red' });
+        $(this).attr({ stroke: 'black' });
         $(this).attr({ 'stroke-width': '5' });
         $(this).unbind("mouseover", mouseOver);
         $(this).unbind("mouseout", mouseOut);
@@ -111,9 +116,18 @@ generateIds(rows, cols);
 
         socket.on('id',function (id) {
             addLineToSquare(id);
-
         });
-        //console.log(squares[0]);
+
+        if (!isPlayerAgain) {
+            currentPlayerTurn++;
+        }
+        else {
+           isPlayerAgain = false;
+        }
+
+        if (currentPlayerTurn === playersCount) {
+            currentPlayerTurn = 0;
+        }
     }
 
     socket.emit('id',currentLineID);
@@ -138,7 +152,7 @@ generateIds(rows, cols);
 
                 $('#' + id).unbind("mouseover", mouseOver);
                 $('#' + id).unbind("mouseout", mouseOut);
-                $('#' + id).attr({ stroke: 'red' });
+                $('#' + id).attr({ stroke: 'black' });
                 $('#' + id).attr({ 'stroke-width': '5' });
 
             }
@@ -152,20 +166,26 @@ generateIds(rows, cols);
                 var $currentLine = $('#' + currentTopLineId);
                 var $position = $currentLine.position();
 
-
                 var x = $position.left;
                 var y = $position.top;
 
                 var rectToFill = paper.rect(x, y, 40, 40);
 
+
                 rectToFill.attr({
-                    fill: 'purple',
+                    fill: playersColors[currentPlayerTurn]
                 });
+
+                isPlayerAgain = true;
+
 
                 //console.log(currentSquare);
                 //console.log(id);
             }
         });
+
+
+
     }
 
     $('div svg path')
