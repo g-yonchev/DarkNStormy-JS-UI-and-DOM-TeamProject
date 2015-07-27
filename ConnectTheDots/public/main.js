@@ -1,7 +1,8 @@
 var btn = document.getElementById('btn');
 
 btn.addEventListener('click', function () {
-
+    $('#container').removeClass('hidden');
+    
     var input = document.getElementById('info');
     var rows = +input.value + 1;
     var cols = +input.value + 1;

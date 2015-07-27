@@ -8,6 +8,10 @@ body {
 	font: 13px Helvetica, Arial;
 }
 
+.hidden {
+	visibility: hidden;
+}
+
 #container {
 	width: 25%;
 	border: 2px solid #BCBCBC;
