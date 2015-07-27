@@ -1,8 +1,15 @@
+$(document).ready(function () {
+   $('#chose-level').addClass('animated fadeInDown');
+});
+
 var btn = document.getElementById('btn');
+$('#btn').addClass('animated pulse');
 
 btn.addEventListener('click', function () {
     $('#container').removeClass('hidden');
-    
+    $('#svg-container').removeClass('hidden');
+    $('#chose-level').addClass('hidden');
+
     var input = document.getElementById('info');
     var rows = +input.value + 1;
     var cols = +input.value + 1;
@@ -15,15 +22,15 @@ btn.addEventListener('click', function () {
         color: 'red',
         points: 0
     }, {
-            color: 'blue',
-            points: 0
-        }, {
-            color: 'green',
-            points: 0
-        }, {
-            color: 'purple',
-            points: 0
-        }];
+        color: 'blue',
+        points: 0
+    }, {
+        color: 'green',
+        points: 0
+    }, {
+        color: 'purple',
+        points: 0
+    }];
 
     var playersCount = players.length;
     var currentPlayerTurn = 0;
@@ -76,8 +83,8 @@ btn.addEventListener('click', function () {
         function createLine(x, y, len, type) {
             var path = 'M' + x + ' ' + y + ' ' + type + len;
             var line = paper.path(path)
-            line.attr({ stroke: 'lightgray' });
-            line.attr({ 'stroke-width': '4' });
+            line.attr({stroke: 'lightgray'});
+            line.attr({'stroke-width': '4'});
             line.node.id = ++pathsIDs;
         }
 
@@ -125,20 +132,20 @@ btn.addEventListener('click', function () {
     (function socket(socket, currentLineID) {
 
         function mouseOver() {
-            $(this).attr({ stroke: '#53533F' });
-            $(this).attr({ 'stroke-width': '5' });
+            $(this).attr({stroke: '#53533F'});
+            $(this).attr({'stroke-width': '5'});
             //console.log($(this).attr('id'));
         }
 
         function mouseOut() {
-            $(this).attr({ stroke: 'lightgray' });
-            $(this).attr({ 'stroke-width': '4' });
+            $(this).attr({stroke: 'lightgray'});
+            $(this).attr({'stroke-width': '4'});
         }
 
         function clicked() {
 
-            $(this).attr({ stroke: 'black' });
-            $(this).attr({ 'stroke-width': '5' });
+            $(this).attr({stroke: 'black'});
+            $(this).attr({'stroke-width': '5'});
             $(this).unbind("mouseover", mouseOver);
             $(this).unbind("mouseout", mouseOut);
 
@@ -185,8 +192,8 @@ btn.addEventListener('click', function () {
 
                     $('#' + id).unbind("mouseover", mouseOver);
                     $('#' + id).unbind("mouseout", mouseOut);
-                    $('#' + id).attr({ stroke: 'black' });
-                    $('#' + id).attr({ 'stroke-width': '5' });
+                    $('#' + id).attr({stroke: 'black'});
+                    $('#' + id).attr({'stroke-width': '5'});
                 }
 
                 if (!currentSquare.lines.length) {
@@ -231,7 +238,8 @@ btn.addEventListener('click', function () {
             .mouseout(mouseOut)
             .click(clicked);
 
-    } (socket, currentLineId));
+    }(socket, currentLineId));
 });
+
 
 

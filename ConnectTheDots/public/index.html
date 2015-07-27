@@ -4,14 +4,28 @@
     <meta charset="UTF-8">
     <title>Connect the dots</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animate.css">
 </head>
 <body>
-    <div id="players-info">
+    <!--<div id="players-info">
         <input id="info" type="text" placeholder="How many rows and cols?"/>
         <br/>
         <button id="btn">Play!</button>
+    </div>-->
+
+
+    <div id="chose-level">
+        <ul id="level-menu">
+            <li class="level">Easy</li>
+            <li class="level">Medium</li>
+            <li class="level">Sado-Mazo</li>
+        </ul>
+        <button id="btn">Play!</button>
     </div>
-    <div id="svg-container"></div>
+
+
+    <div id="svg-container" class="hidden"></div>
+
     <div id="container" class="hidden"><h1>Type your message ...</h1>
         <div id="chat-container">
             <ul id="messages"></ul>
