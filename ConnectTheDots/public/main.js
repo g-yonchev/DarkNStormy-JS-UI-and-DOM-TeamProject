@@ -33,6 +33,17 @@ btn.addEventListener('click', function () {
     var socket = io();
     var currentLineId = -1;
 
+    //emitting chat's messages
+    $('form').submit(function () {
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+    });
+    socket.on('chat message', function (msg) {
+        $('#messages').append($('<li>').text(msg));
+    });
+    //--- end of emitting chat's messages
+
     var generateGrid = (function grid(rows, cols) {
         var pathsIDs = 0;
 

@@ -15,10 +15,17 @@ io.on('connection', function(socket){
     console.log('id: ' + id);
     io.emit('id',id);
   });
-  
+
+
   socket.on('rect color',function(color) {
     console.log('color: ' + color);
     io.emit('rect color',color);
+  });
+});
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
   });
 });
 
