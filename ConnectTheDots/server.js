@@ -21,6 +21,11 @@ io.on('connection', function(socket){
     console.log('color: ' + color);
     io.emit('rect color',color);
   });
+
+  socket.on('difficulty', function (diff) {
+    console.log(diff);
+    io.emit('difficulty',diff);
+  })
 });
 
 io.on('connection', function(socket){

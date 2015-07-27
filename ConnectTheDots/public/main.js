@@ -10,11 +10,21 @@ var levels = document.getElementById('level-menu');
 
 var rows, cols;
 
+var someSocket = io();
+
 levels.addEventListener('click', function(ev) {
     var currentLevel = ev.target;
     var difficult = currentLevel.innerText;
+
+
+    someSocket.emit('difficulty',difficult);
+
+
     $(currentLevel).addClass('level-chosen');
-    switch (difficult) {
+});
+
+someSocket.on('difficulty', function(diff) {
+    switch (diff) {
         case 'Easy':
             rows = 8;
             cols = 8;
@@ -28,6 +38,7 @@ levels.addEventListener('click', function(ev) {
             cols = 15;
             break;
     }
+    console.log(diff);
 });
 
 
