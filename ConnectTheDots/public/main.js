@@ -5,13 +5,35 @@ $(document).ready(function () {
 var btn = document.getElementById('btn');
 $('#btn').addClass('animated pulse');
 
+var levels = document.getElementById('level-menu');
+
+var rows, cols;
+
+levels.addEventListener('click', function(ev) {
+    var currentLevel = ev.target;
+    var difficult = currentLevel.innerText;
+    $(currentLevel).addClass('level-chosen');
+    switch (difficult) {
+        case 'Easy':
+            rows = 4;
+            cols = 4;
+            break;
+        case 'Medium':
+            rows = 8;
+            cols = 8;
+            break;
+        case 'Sado-Mazo':
+            rows = 14;
+            cols = 14;
+            break;
+    }
+});
+
+
 btn.addEventListener('click', function () {
     $('#container').removeClass('hidden');
     $('#svg-container').removeClass('hidden');
     $('#chose-level').addClass('hidden');
-
-    var rows = 10;
-    var cols = 10;
 
     var paper = Raphael('svg-container', 600, 600);
 

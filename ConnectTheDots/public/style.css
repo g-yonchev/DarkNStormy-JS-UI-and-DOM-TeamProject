@@ -37,6 +37,12 @@ body {
 	color: #00cbe9;
 }
 
+.level-chosen {
+	background-color: rgb(55, 99, 11);
+	color: black;
+	border-radius: 23px;
+}
+
 #chose-level {
 	width: 850px;
 	height: 890px;
