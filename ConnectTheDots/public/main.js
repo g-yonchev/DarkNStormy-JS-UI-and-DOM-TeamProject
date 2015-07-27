@@ -10,9 +10,8 @@ btn.addEventListener('click', function () {
     $('#svg-container').removeClass('hidden');
     $('#chose-level').addClass('hidden');
 
-    var input = document.getElementById('info');
-    var rows = +input.value + 1;
-    var cols = +input.value + 1;
+    var rows = 10;
+    var cols = 10;
 
     var paper = Raphael('svg-container', 600, 600);
 
