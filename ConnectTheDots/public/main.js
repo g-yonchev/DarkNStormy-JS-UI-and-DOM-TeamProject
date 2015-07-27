@@ -4,6 +4,7 @@ $(document).ready(function () {
 
 var btn = document.getElementById('btn');
 $('#btn').addClass('animated pulse');
+$('#team-logo').addClass('animated flash');
 
 var levels = document.getElementById('level-menu');
 
@@ -15,16 +16,16 @@ levels.addEventListener('click', function(ev) {
     $(currentLevel).addClass('level-chosen');
     switch (difficult) {
         case 'Easy':
-            rows = 4;
-            cols = 4;
-            break;
-        case 'Medium':
             rows = 8;
             cols = 8;
             break;
+        case 'Medium':
+            rows = 11;
+            cols = 11;
+            break;
         case 'Sado-Mazo':
-            rows = 14;
-            cols = 14;
+            rows = 15;
+            cols = 15;
             break;
     }
 });

@@ -5,18 +5,38 @@
 }
 
 body {
-	font: 13px Helvetica, Arial;
+	font-family: 'Shadows Into Light', cursive;
 	margin: 0;
 	padding: 0;
+	background: url("dark-n-stormy.jpg");
+	background-size: cover;
 }
 
 .hidden {
 	display: none;
 }
 
+#crew {
+	font-size: 25px;
+	color: #0C1A3C;
+}
+
+#team-logo {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 20px 20px 0px 20px;
+	font-size: 45px;
+	color: #0C1A3C;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-delay: 1s;
+	-moz-animation-duration: 2s;
+	-moz-animation-delay: 1s;
+	-webkit-animation-iteration-count: 2;
+	-moz-animation-iteration-count: 2;
+}
+
 #level-menu {
 	list-style-type: none;
-	margin-top: 130px;
 	padding-left: 0px;
 }
 
@@ -27,14 +47,15 @@ body {
 	margin-top: 10px;
 	padding-bottom: 25px;
 	font-size: 45px;
-	border-bottom: 1px solid lightgray;
+	border-bottom: 1px solid #0C1A3C;
 	text-align: center;
 	cursor: pointer;
-	color: lightgray;
+	color: #0C1A3C;
 }
 
 .level:hover {
-	color: #00cbe9;
+	color: #374536;
+	border-bottom: 1px solid #374536;
 }
 
 .level-chosen {
@@ -44,41 +65,40 @@ body {
 }
 
 #chose-level {
-	width: 850px;
+	width: 735px;
 	height: 890px;
 	margin: 0 auto;
 	text-align: center;
-	border: 1px solid black;
-	background-color: rgb(37, 42, 62);
+	background-color: rgba(255, 255, 255, 0.4);
 }
 
 #btn {
-	margin-top: 30px;
-	background: #dedede;
-	background-image: -webkit-linear-gradient(top, #dedede, #566670);
+	margin-top: 140px;
+	background: #374536;
+	border: 0;
+	/*background-image: -webkit-linear-gradient(top, #dedede, #566670);
 	background-image: -moz-linear-gradient(top, #dedede, #566670);
 	background-image: -ms-linear-gradient(top, #dedede, #566670);
 	background-image: -o-linear-gradient(top, #dedede, #566670);
 	background-image: linear-gradient(to bottom, #dedede, #566670);
-	-webkit-border-radius: 26;
-	-moz-border-radius: 26;
-	border-radius: 26px;
-	font-family: Arial;
-	color: #fcfcfc;
+	*/
+	font-family: 'Shadows Into Light', cursive;
+	color: #FFF199;
 	font-size: 20px;
-	padding: 10px 20px 10px 20px;
+	padding: 10px 26px 10px 26px;
 	text-decoration: none;
+	cursor: pointer;
 	-webkit-animation-iteration-count: infinite;
 	-moz-animation-iteration-count: infinite;
 }
 
 #btn:hover {
-	background: #00cbe9;
-	background-image: -webkit-linear-gradient(top, #00cbe9, #095485);
-	background-image: -moz-linear-gradient(top, #00cbe9, #095485);
-	background-image: -ms-linear-gradient(top, #00cbe9, #095485);
-	background-image: -o-linear-gradient(top, #00cbe9, #095485);
-	background-image: linear-gradient(to bottom, #00cbe9, #095485);
+	color: #ffc520;
+	/*background-image: -webkit-linear-gradient(top, #dedede, #0C1A3C);
+	background-image: -moz-linear-gradient(top, #dedede, #0C1A3C);
+	background-image: -ms-linear-gradient(top, #dedede, #0C1A3C);
+	background-image: -o-linear-gradient(top, #dedede, #0C1A3C);
+	background-image: linear-gradient(to bottom, #dedede, #0C1A3C);*/
 	text-decoration: none;
 }
 
