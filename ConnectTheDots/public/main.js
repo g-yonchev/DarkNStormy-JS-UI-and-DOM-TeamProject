@@ -44,6 +44,7 @@ someSocket.on('set up game', function () {
     $('#container').removeClass('hidden');
     $('#svg-container').removeClass('hidden');
     $('#chose-level').addClass('hidden');
+    $('#lightningcanvas').removeClass('hidden');
 
     var paper = Raphael('svg-container', 600, 600);
 

@@ -12,6 +12,13 @@ body {
 	background-size: cover;
 }
 
+#lightningcanvas {
+	position: absolute;
+	top: 0;
+	pointer-events: none;
+	width: 100%;
+}
+
 .hidden {
 	display: none;
 }
@@ -85,12 +92,6 @@ body {
 	margin-top: 140px;
 	background: #374536;
 	border: 0;
-	/*background-image: -webkit-linear-gradient(top, #dedede, #566670);
-	background-image: -moz-linear-gradient(top, #dedede, #566670);
-	background-image: -ms-linear-gradient(top, #dedede, #566670);
-	background-image: -o-linear-gradient(top, #dedede, #566670);
-	background-image: linear-gradient(to bottom, #dedede, #566670);
-	*/
 	font-family: 'Shadows Into Light', cursive;
 	color: #FFF199;
 	font-size: 20px;
@@ -103,19 +104,12 @@ body {
 
 #btn:hover {
 	color: #ffc520;
-	/*background-image: -webkit-linear-gradient(top, #dedede, #0C1A3C);
-	background-image: -moz-linear-gradient(top, #dedede, #0C1A3C);
-	background-image: -ms-linear-gradient(top, #dedede, #0C1A3C);
-	background-image: -o-linear-gradient(top, #dedede, #0C1A3C);
-	background-image: linear-gradient(to bottom, #dedede, #0C1A3C);*/
 	text-decoration: none;
 }
 
 #container {
 	width: 25%;
 	border: 2px solid #BCBCBC;
-	position: absolute;
-	bottom: 0;
 }
 
 h1 {
