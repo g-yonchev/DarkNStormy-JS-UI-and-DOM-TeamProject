@@ -23,9 +23,13 @@ io.on('connection', function(socket){
   });
 
   socket.on('difficulty', function (diff) {
-    console.log(diff);
-    io.emit('difficulty',diff);
-  })
+      console.log(diff);
+      io.emit('difficulty', diff);
+  });
+
+  socket.on('set up game', function () {
+      io.emit('set up game', null);
+  });
 });
 
 io.on('connection', function(socket){
