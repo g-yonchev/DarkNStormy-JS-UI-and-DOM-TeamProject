@@ -3,7 +3,7 @@ var Lightning = (function () {
         options = options || {};
 
         this.width = options.width || 128;
-        this.height = options.height || 512;
+        this.height = options.height || 118;
         this.x = options.x || 0;
         this.y = options.y || 0;
 

@@ -13,8 +13,8 @@ body {
 }
 
 #lightningcanvas {
-	position: absolute;
-	top: 0;
+	position: fixed;
+	top: 465px;
 	pointer-events: none;
 	width: 100%;
 }

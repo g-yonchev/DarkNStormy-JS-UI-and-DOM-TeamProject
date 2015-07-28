@@ -30,8 +30,8 @@ someSocket.on('difficulty', function (diff) {
             cols = 11;
             break;
         case 's':
-            rows = 15;
-            cols = 15;
+            rows = 14;
+            cols = 14;
             break;
     }
 });
