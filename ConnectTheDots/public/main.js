@@ -53,17 +53,25 @@ someSocket.on('set up game', function () {
     }, {
         color: 'blue',
         points: 0
-    }, {
-        color: 'green',
-        points: 0
-    }, {
-        color: 'purple',
-        points: 0
     }];
 
     var playersCount = players.length;
     var currentPlayerTurn = 0;
     var isPlayerAgain = false;
+
+    var pointsContainer = document.getElementById('points-container');
+    var firstPlayerContainer = document.createElement('div');
+    var secondPlayerContainer = document.createElement('div');
+    pointsContainer.appendChild(firstPlayerContainer);
+    pointsContainer.appendChild(secondPlayerContainer);
+
+    var showPoints = (function showPoints() {
+        firstPlayerContainer.innerHTML = players[0].color + ': ' + players[0].points;
+        secondPlayerContainer.innerHTML = players[1].color + ': ' + players[1].points;
+        console.log(players[0].color, players[0].points);
+        console.log(players[1].color, players[1].points);
+    });
+    showPoints();
 
     var squares = [];
 
@@ -253,6 +261,8 @@ someSocket.on('set up game', function () {
 
 
                     players[currentPlayerTurn].points++;
+
+                    showPoints();
 
                     isPlayerAgain = true;
 
