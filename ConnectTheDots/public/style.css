@@ -110,6 +110,9 @@ body {
 #container {
 	width: 25%;
 	border: 2px solid #BCBCBC;
+	position: fixed;
+	right: 4px;
+	bottom: 2px;
 }
 
 h1 {
