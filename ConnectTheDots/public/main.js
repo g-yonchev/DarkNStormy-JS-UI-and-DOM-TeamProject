@@ -60,14 +60,19 @@ someSocket.on('set up game', function () {
     var isPlayerAgain = false;
 
     var pointsContainer = document.getElementById('points-container');
-    var firstPlayerContainer = document.createElement('div');
-    var secondPlayerContainer = document.createElement('div');
-    pointsContainer.appendChild(firstPlayerContainer);
-    pointsContainer.appendChild(secondPlayerContainer);
+    var firstPlayerPointsSpan = document.createElement('span');
+    var secondPlayerPointsSpan = document.createElement('span');
+    firstPlayerPointsSpan.style.display = 'block';
+    firstPlayerPointsSpan.style.color = 'red';
+    secondPlayerPointsSpan.style.display = 'block';
+    secondPlayerPointsSpan.style.color = 'blue';
+
+    pointsContainer.appendChild(firstPlayerPointsSpan);
+    pointsContainer.appendChild(secondPlayerPointsSpan);
 
     var showPoints = (function showPoints() {
-        firstPlayerContainer.innerHTML = players[0].color + ': ' + players[0].points;
-        secondPlayerContainer.innerHTML = players[1].color + ': ' + players[1].points;
+        firstPlayerPointsSpan.innerText = players[0].color + ': ' + players[0].points;
+        secondPlayerPointsSpan.innerText = players[1].color + ': ' + players[1].points;
         console.log(players[0].color, players[0].points);
         console.log(players[1].color, players[1].points);
     });
