@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="hover-min.css">
     <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
     <div id="chose-level">
@@ -24,13 +25,13 @@
     <div id="svg-container" class="hidden"></div>
     <div id="canvas"></div>
 
-    <div id="container" class="hidden"><h1>Type your message ...</h1>
+    <div id="container" class="hidden"><h1><i class="fa fa-weixin"></i>Live Chat</h1>
         <div id="chat-container">
             <ul id="messages"></ul>
         </div>
         <form action="">
-            <input id="m" autocomplete="off"/>
-            <button>Send</button>
+            <input id="m" autocomplete="off" placeholder="Type your message here ..."/>
+            <button><i class="fa fa-weixin"></i></button>
         </form>
     </div>
     <canvas id="lightningcanvas" width="600" height="300" class="hidden"></canvas>
