@@ -59,9 +59,13 @@ body {
 }
 
 .level-chosen {
-	background-color: rgb(55, 99, 11);
-	color: black;
-	border-radius: 23px;
+	color: #ffc520;
+	border-bottom: 1px solid #ffc520;
+}
+
+.level-chosen:hover {
+	color: #ffc520;
+	border-bottom: 1px solid #ffc520;
 }
 
 #chose-level {

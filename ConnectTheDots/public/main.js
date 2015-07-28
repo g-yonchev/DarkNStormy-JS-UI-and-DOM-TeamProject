@@ -10,38 +10,36 @@ var levels = document.getElementById('level-menu');
 
 var rows, cols;
 
-var someSocket = io();
+$('.level').on('click', function(){
 
-levels.addEventListener('click', function(ev) {
-    var currentLevel = ev.target;
-    var difficult = currentLevel.innerText;
-
-
-    someSocket.emit('difficulty',difficult);
-
-
-    $(currentLevel).addClass('level-chosen');
-});
-
-someSocket.on('difficulty', function(diff) {
-    switch (diff) {
-        case 'Easy':
+    $('.level').removeClass('level-chosen');
+    $(this).addClass('level-chosen');
+    switch($(this).data('level'))
+    {
+        case 'e':
             rows = 8;
             cols = 8;
             break;
-        case 'Medium':
+        case 'm':
             rows = 11;
             cols = 11;
             break;
-        case 'Sado-Mazo':
+        case 's':
             rows = 15;
             cols = 15;
             break;
     }
-    console.log(diff);
 });
+/*
 
 
+
+ZLATI'S SOCKET GOES HERE :)
+
+
+
+
+*/
 btn.addEventListener('click', function () {
     $('#container').removeClass('hidden');
     $('#svg-container').removeClass('hidden');
