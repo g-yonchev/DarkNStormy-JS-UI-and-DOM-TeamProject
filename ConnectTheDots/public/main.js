@@ -9,13 +9,18 @@ $('#team-logo').addClass('animated flash');
 var levels = document.getElementById('level-menu');
 
 var rows, cols;
+var someSocket = io();
 
 $('.level').on('click', function(){
 
     $('.level').removeClass('level-chosen');
     $(this).addClass('level-chosen');
-    switch($(this).data('level'))
-    {
+    var difficult = $(this).data('level');
+    someSocket.emit('difficulty', difficult);
+});
+
+someSocket.on('difficulty', function (diff) {
+    switch (diff) {
         case 'e':
             rows = 8;
             cols = 8;
@@ -30,24 +35,17 @@ $('.level').on('click', function(){
             break;
     }
 });
-/*
 
-
-
-ZLATI'S SOCKET GOES HERE :)
-
-
-
-
-*/
 btn.addEventListener('click', function () {
+    someSocket.emit('set up game', null);
+});
+
+someSocket.on('set up game', function () {
     $('#container').removeClass('hidden');
     $('#svg-container').removeClass('hidden');
     $('#chose-level').addClass('hidden');
 
     var paper = Raphael('svg-container', 600, 600);
-
-    var container = document.getElementById('svg-container');
 
     var players = [{
         color: 'red',
@@ -114,8 +112,8 @@ btn.addEventListener('click', function () {
         function createLine(x, y, len, type) {
             var path = 'M' + x + ' ' + y + ' ' + type + len;
             var line = paper.path(path)
-            line.attr({stroke: 'lightgray'});
-            line.attr({'stroke-width': '4'});
+            line.attr({ stroke: 'lightgray' });
+            line.attr({ 'stroke-width': '4' });
             line.node.id = ++pathsIDs;
         }
 
@@ -136,7 +134,7 @@ btn.addEventListener('click', function () {
         var lineThreeStart = (rows * cols) - (cols - 1);
         var lineFourStart = lineThreeStart + 1;
 
-        for (var i = 1; i <= (rows - 1) * (cols - 1); i++) {
+        for (var i = 1; i <= (rows - 1) * (cols - 1) ; i++) {
 
             var squaresLines = [lineOneStart, lineTwoStart, lineThreeStart, lineFourStart];
             var square = {
@@ -163,20 +161,20 @@ btn.addEventListener('click', function () {
     (function socket(socket, currentLineID) {
 
         function mouseOver() {
-            $(this).attr({stroke: '#53533F'});
-            $(this).attr({'stroke-width': '5'});
+            $(this).attr({ stroke: '#53533F' });
+            $(this).attr({ 'stroke-width': '5' });
             //console.log($(this).attr('id'));
         }
 
         function mouseOut() {
-            $(this).attr({stroke: 'lightgray'});
-            $(this).attr({'stroke-width': '4'});
+            $(this).attr({ stroke: 'lightgray' });
+            $(this).attr({ 'stroke-width': '4' });
         }
 
         function clicked() {
 
-            $(this).attr({stroke: 'black'});
-            $(this).attr({'stroke-width': '5'});
+            $(this).attr({ stroke: 'black' });
+            $(this).attr({ 'stroke-width': '5' });
             $(this).unbind("mouseover", mouseOver);
             $(this).unbind("mouseout", mouseOut);
 
@@ -223,8 +221,8 @@ btn.addEventListener('click', function () {
 
                     $('#' + id).unbind("mouseover", mouseOver);
                     $('#' + id).unbind("mouseout", mouseOut);
-                    $('#' + id).attr({stroke: 'black'});
-                    $('#' + id).attr({'stroke-width': '5'});
+                    $('#' + id).attr({ stroke: 'black' });
+                    $('#' + id).attr({ 'stroke-width': '5' });
                 }
 
                 if (!currentSquare.lines.length) {
@@ -271,6 +269,3 @@ btn.addEventListener('click', function () {
 
     }(socket, currentLineId));
 });
-
-
-
