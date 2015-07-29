@@ -195,7 +195,17 @@ someSocket.on('set up game', function () {
                     var x = $position.left;
                     var y = $position.top;
 
-                    //alert('x: ' + x + ' y: ' + y);
+                    var browser = navigator.checkBrowser;
+
+                    alert('x: ' + x + ' y: ' + y);
+
+                    // check Firefox
+                    if (browser.contains('Firefox')) {
+                        x = x - 490;
+                        y = y + 10;
+                        alert('I am mozilla :)')
+                    }
+
                     var rectToFill = paper.rect(x, y, constants.squareSize.width, constants.squareSize.height);
 
                     var colorToUse = players[currentPlayerTurn].color;
