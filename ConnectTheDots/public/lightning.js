@@ -7,32 +7,44 @@ var Lightning = (function () {
         this.x = options.x || 0;
         this.y = options.y || 0;
 
-        this.frames = options.frames || 8;
-        this.renderSpeed = options.renderSpeed|| 7;
+        this.frames = options.frames || 18;
+        this.renderSpeed = options.renderSpeed|| 15;
         this.image = options.image || new Image();
         this.image.src = 'lightning_0.png';
         this.frameCounter = 0;
         this.tickCounter = 0;
         this.context = $('canvas')[0].getContext('2d');
 
-        var delta = 1;
-        var update = 7;
-
+        var delta = Math.random();
+        var update = 900;
+        var secondDelta = Math.random();
+        var secondUpdate = 400;
+        var thirdDelta = Math.random();
+        var thirdUpdate = 750;
         this.move = function () {
-            this.x += delta + update;
-            if (this.x >= 900) {
-                this.image.src = 'lightning_0.png';
-                delta *= -1;
-                update *= -1;
-            }
-            if (this.x === 0) {
-                this.image.src = 'lightning_0.png';
-                delta *= -1;
-                update *= -1;
-            }
+            this.x = delta * update;
+            //if (this.x >= 900) {
+            //    this.image.src = 'lightning_0.png';
+            //    delta *= -1;
+            //    update *= -1;
+            //}
+            //if (this.x === 0) {
+            //    this.image.src = 'lightning_0.png';
+            //    delta *= -1;
+            //    update *= -1;
+            //}
 
         };
 
+
+
+        this.secondMove = function () {
+            this.x = secondDelta * secondUpdate;
+        };
+
+        this.thirdMove = function () {
+            this.x = thirdDelta * thirdUpdate;
+        };
 
 
         this.drawSprite = function () {
@@ -57,6 +69,8 @@ var Lightning = (function () {
                 this.frameCounter = 0;
             }
         }
+
+       
     };
 
 
@@ -83,17 +97,27 @@ var Lightning = (function () {
 
     $(document).ready(function () {
         var lightning = new Lightning();
+        //var secondLight = new Lightning();
+        //var thirdLight = new Lightning();
+
         var mainLoop = function () {
             $('canvas')[0].getContext('2d').clearRect(0, 0, 1000, 500);
             lightning.move();
             lightning.drawSprite();
+            lightning.x = Math.random() * 600;
+            lightning.drawSprite();
+            //lightning.move();
             animation = requestAnimationFrame(mainLoop);
         };
-
-        setTimeout(function () {
+        
+       
+        var anim = setTimeout(function () {
             mainLoop();
         }, 2000);
 
+
+
+      
     });
 }());
 
