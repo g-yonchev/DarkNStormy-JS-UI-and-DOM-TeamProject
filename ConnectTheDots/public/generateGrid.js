@@ -3,23 +3,23 @@ var generateGrid = (function grid(paper, rows, cols) {
 
     for (var i = 1; i <= rows; i++) {
         for (var j = 1; j <= cols; j++) {
-            var y = i * 40;
-            var x = j * 40;
+            var y = i * constants.squareSize.width;
+            var x = j * constants.squareSize.height;
 
             if (j !== cols) {
-                createLine(x, y, 40, 'h');
+                createLine(x, y, constants.squareSize.width, 'h');
             }
         }
     }
 
     for (var i = 1; i <= rows; i++) {
         for (var j = 1; j <= cols; j++) {
-            var y = i * 40;
-            var x = j * 40;
+            var y = i * constants.squareSize.width;
+            var x = j * constants.squareSize.height;
 
             // without last line ( they get out of the grid)
             if (i !== rows) {
-                createLine(x, y, 40, 'v');
+                createLine(x, y, constants.squareSize.height, 'v');
             }
 
             createDot(x, y, 2);
@@ -29,8 +29,8 @@ var generateGrid = (function grid(paper, rows, cols) {
     function createLine(x, y, len, type) {
         var path = 'M' + x + ' ' + y + ' ' + type + len;
         var line = paper.path(path)
-        line.attr({ stroke: 'lightgray' });
-        line.attr({ 'stroke-width': '4' });
+        line.attr({ stroke: constants.colors.lightgray });
+        line.attr({ 'stroke-width': constants.lineSize.initial });
         line.node.id = ++pathsIDs;
     }
 

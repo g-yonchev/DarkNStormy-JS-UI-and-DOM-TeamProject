@@ -21,16 +21,16 @@ $('.level').on('click', function(){
 someSocket.on('difficulty', function (diff) {
     switch (diff) {
         case 'e':
-            rows = 8;
-            cols = 8;
+            rows = constants.gridSize.easy;
+            cols = constants.gridSize.easy;
             break;
         case 'm':
-            rows = 11;
-            cols = 11;
+            rows = constants.gridSize.medium;
+            cols = constants.gridSize.medium;
             break;
         case 's':
-            rows = 14;
-            cols = 14;
+            rows = constants.gridSize.hard;
+            cols = constants.gridSize.hard;
             break;
     }
 });
@@ -45,13 +45,13 @@ someSocket.on('set up game', function () {
     $('#chose-level').addClass('hidden');
     $('#lightningcanvas').removeClass('hidden');
 
-    var paper = Raphael('svg-container', 600, 600);
+    var paper = Raphael('svg-container', constants.svgSize.width, constants.svgSize.height);
 
     var players = [{
-        color: 'red',
+        color: constants.colors.red,
         points: 0
     }, {
-        color: 'blue',
+        color: constants.colors.blue,
         points: 0
     }];
 
@@ -73,16 +73,19 @@ someSocket.on('set up game', function () {
     var firstPlayerPointsSpan = document.createElement('span');
     var secondPlayerPointsSpan = document.createElement('span');
     firstPlayerPointsSpan.style.display = 'block';
-    firstPlayerPointsSpan.style.color = 'red';
+    firstPlayerPointsSpan.style.color = constants.colors.red;
     secondPlayerPointsSpan.style.display = 'block';
-    secondPlayerPointsSpan.style.color = 'blue';
+    secondPlayerPointsSpan.style.color = constants.colors.blue;
 
     pointsContainer.appendChild(firstPlayerPointsSpan);
     pointsContainer.appendChild(secondPlayerPointsSpan);
 
     var showPoints = (function showPoints() {
-        firstPlayerPointsSpan.innerText = players[0].color + ': ' + players[0].points;
-        secondPlayerPointsSpan.innerText = players[1].color + ': ' + players[1].points;
+        var firstPlayerPoints = players[0].color + ': ' + players[0].points;
+        var secondPlayerPoints = players[1].color + ': ' + players[1].points;
+
+        firstPlayerPointsSpan.innerText = firstPlayerPoints;
+        secondPlayerPointsSpan.innerText = secondPlayerPoints;
         //console.log(players[0].color, players[0].points);
         //console.log(players[1].color, players[1].points);
     });
@@ -110,19 +113,19 @@ someSocket.on('set up game', function () {
     (function socket(socket, currentLineID) {
 
         function mouseOver() {
-            $(this).attr({ stroke: '#53533F' });
-            $(this).attr({ 'stroke-width': '5' });
+            $(this).attr({ stroke: constants.colors.darkgray });
+            $(this).attr({ 'stroke-width': constants.lineSize.hovered });
             //console.log($(this).attr('id'));
         }
 
         function mouseOut() {
-            $(this).attr({ stroke: 'lightgray' });
-            $(this).attr({ 'stroke-width': '4' });
+            $(this).attr({ stroke: constants.colors.lightgray});
+            $(this).attr({ 'stroke-width': constants.lineSize.initial });
         }
 
         function clicked() {
-            $(this).attr({ stroke: 'black' });
-            $(this).attr({ 'stroke-width': '5' });
+            $(this).attr({ stroke: constants.colors.black });
+            $(this).attr({ 'stroke-width': constants.lineSize.filled });
             $(this).unbind("mouseover", mouseOver);
             $(this).unbind("mouseout", mouseOut);
 
@@ -176,8 +179,8 @@ someSocket.on('set up game', function () {
 
                     $('#' + id).unbind("mouseover", mouseOver);
                     $('#' + id).unbind("mouseout", mouseOut);
-                    $('#' + id).attr({ stroke: 'black' });
-                    $('#' + id).attr({ 'stroke-width': '5' });
+                    $('#' + id).attr({ stroke: constants.colors.black });
+                    $('#' + id).attr({ 'stroke-width': constants.lineSize.filled });
                 }
 
                 if (!currentSquare.lines.length) {
@@ -191,7 +194,7 @@ someSocket.on('set up game', function () {
                     var y = $position.top;
 
                     //alert('x: ' + x + ' y: ' + y);
-                    var rectToFill = paper.rect(x, y, 40, 40);
+                    var rectToFill = paper.rect(x, y, constants.squareSize.width, constants.squareSize.height);
 
                     var colorToUse = players[currentPlayerTurn].color;
 
@@ -217,10 +220,11 @@ someSocket.on('set up game', function () {
             });
         }
 
-        $('div svg path')
-            .mouseover(mouseOver)
-            .mouseout(mouseOut)
-            .click(clicked);
+        var $line = $('div svg path');
+
+        $line.mouseover(mouseOver)
+             .mouseout(mouseOut)
+             .click(clicked);
 
     }(socket, currentLineId));
 });
