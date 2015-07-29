@@ -140,11 +140,16 @@ someSocket.on('set up game', function () {
                 addLineToSquare(id);
             });
 
+            socket.on('player again', function (again) {
+                isPlayerAgain = again;
+            });
+
             if (!isPlayerAgain) {
                 currentPlayerTurn++;
             }
             else {
                 isPlayerAgain = false;
+                socket.emit('player again', isPlayerAgain);
             }
 
             if (currentPlayerTurn === playersCount) {
@@ -155,7 +160,7 @@ someSocket.on('set up game', function () {
 
         socket.on('player turn', function (turn) {
             currentPlayerTurn = turn;
-            //console.log('in socket: ', currentPlayerTurn);
+            console.log('in socket: ', currentPlayerTurn);
         });
         //console.log('after socket: ', currentPlayerTurn);
 
@@ -196,21 +201,10 @@ someSocket.on('set up game', function () {
                     var y = $position.top;
 
                     var browser = navigator.checkBrowser;
-                    //alert(browser);
-                    //alert('x: ' + x + ' y: ' + y);
-                    if (browser === 'Firefox 39') {
-                        x = x -490;
-                        y = y + 10;
-                        //alert('mozila')
-                    } else if (browser === 'MSIE 10') {
-                        x = x - 588.7037353;
-                        y = y + 3 - 0.32638931;
-                    } else if (browser === 'IE 11') {
-                        x = x - 641;
-                        y = y + 2.5;
-                    }
 
-                    //alert('x: ' + x + ' y: ' + y);
+                    x = crossBrowser(browser, x, y).x;
+                    y = crossBrowser(browser, x, y).y;
+
                     var rectToFill = paper.rect(x, y, constants.squareSize.width, constants.squareSize.height);
 
                     var colorToUse = players[currentPlayerTurn].color;
@@ -230,6 +224,8 @@ someSocket.on('set up game', function () {
                     showPoints();
 
                     isPlayerAgain = true;
+
+                    socket.emit('player again', isPlayerAgain);
 
                     //console.log(currentSquare);
                     //console.log(id);

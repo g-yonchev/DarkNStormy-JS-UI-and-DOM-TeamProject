@@ -34,6 +34,10 @@ io.on('connection', function(socket){
   socket.on('player turn', function (turn) {
       io.emit('player turn', turn);
   });
+
+  socket.on('player again', function (again) {
+      io.emit('player again', again);
+  });
 });
 
 io.on('connection', function(socket){
