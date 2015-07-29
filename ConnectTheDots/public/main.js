@@ -140,11 +140,16 @@ someSocket.on('set up game', function () {
                 addLineToSquare(id);
             });
 
+            socket.on('player again', function (again) {
+                isPlayerAgain = again;
+            });
+
             if (!isPlayerAgain) {
                 currentPlayerTurn++;
             }
             else {
                 isPlayerAgain = false;
+                socket.emit('player again', isPlayerAgain);
             }
 
             if (currentPlayerTurn === playersCount) {
@@ -155,7 +160,7 @@ someSocket.on('set up game', function () {
 
         socket.on('player turn', function (turn) {
             currentPlayerTurn = turn;
-            //console.log('in socket: ', currentPlayerTurn);
+            console.log('in socket: ', currentPlayerTurn);
         });
         //console.log('after socket: ', currentPlayerTurn);
 
@@ -223,6 +228,8 @@ someSocket.on('set up game', function () {
                     showPoints();
 
                     isPlayerAgain = true;
+
+                    socket.emit('player again', isPlayerAgain);
 
                     //console.log(currentSquare);
                     //console.log(id);
