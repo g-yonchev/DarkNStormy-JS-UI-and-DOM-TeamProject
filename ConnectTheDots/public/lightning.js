@@ -7,8 +7,8 @@ var Lightning = (function () {
         this.x = options.x || 0;
         this.y = options.y || 0;
 
-        this.frames = options.frames || 18;
-        this.renderSpeed = options.renderSpeed|| 15;
+        this.frames = options.frames || 30;
+        this.renderSpeed = options.renderSpeed|| 18;
         this.image = options.image || new Image();
         this.image.src = 'lightning_0.png';
         this.frameCounter = 0;
@@ -101,7 +101,7 @@ var Lightning = (function () {
             $('canvas')[0].getContext('2d').clearRect(0, 0, 1000, 500);
             lightning.move();
             lightning.drawSprite();
-            lightning.x = Math.random() * 600;
+            lightning.x = Math.random() * 900;
             lightning.drawSprite();
             //lightning.move();
             animation = requestAnimationFrame(mainLoop);
