@@ -40,7 +40,7 @@ btn.addEventListener('click', function () {
 });
 
 someSocket.on('set up game', function () {
-    $('#container').removeClass('hidden');
+    $('#chat-minimized').removeClass('hidden');
     $('#svg-container').removeClass('hidden');
     $('#chose-level').addClass('hidden');
     $('#lightningcanvas').removeClass('hidden');
@@ -54,6 +54,16 @@ someSocket.on('set up game', function () {
         color: 'blue',
         points: 0
     }];
+
+    $('#chat-minimized').on('click', function () {
+        $('#container').removeClass('hidden').addClass('animated fadeInUp');
+        $('#chat-minimized').addClass('hidden');
+    });
+
+    $('h1').on('click', function (){
+        $('#container').addClass('animated fadeInDown').addClass('hidden');
+        $('#chat-minimized').removeClass('hidden');
+    })
 
     var playersCount = players.length;
     var currentPlayerTurn = 0;
