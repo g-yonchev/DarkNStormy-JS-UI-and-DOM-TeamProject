@@ -72,9 +72,11 @@ someSocket.on('set up game', function () {
     var pointsContainer = document.getElementById('points-container');
     var firstPlayerPointsSpan = document.createElement('span');
     var secondPlayerPointsSpan = document.createElement('span');
-    firstPlayerPointsSpan.style.display = 'block';
+    firstPlayerPointsSpan.style.display = 'inline-block';
+    firstPlayerPointsSpan.style.marginRight='40px';
     firstPlayerPointsSpan.style.color = constants.colors.red;
-    secondPlayerPointsSpan.style.display = 'block';
+    secondPlayerPointsSpan.style.display = 'inline-block';
+    secondPlayerPointsSpan.style.marginRight='10px';
     secondPlayerPointsSpan.style.color = constants.colors.blue;
 
     pointsContainer.appendChild(firstPlayerPointsSpan);

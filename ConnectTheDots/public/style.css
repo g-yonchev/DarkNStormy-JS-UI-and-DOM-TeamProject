@@ -44,7 +44,12 @@ body {
 
 #points-container {
 	text-align: center;
-	font-size: 20px;
+	font-size: 35px;
+	width: 320px;
+	float: right;
+	text-transform: uppercase;
+	background-color: rgba(255,255,255,0.45);
+	border-radius: 5px;
 }
 
 #level-menu {
