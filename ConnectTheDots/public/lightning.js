@@ -21,25 +21,14 @@ var Lightning = (function () {
 
         this.move = function () {
             this.x = delta * update;
+            return this;
         };
-
-
-
-        this.secondMove = function () {
-            this.x = secondDelta * secondUpdate;
-        };
-
-        this.thirdMove = function () {
-            this.x = thirdDelta * thirdUpdate;
-        };
-
 
         this.drawSprite = function () {
 
             this.context.drawImage(
                 this.image,
-                this.frameCounter * this.width,
-                0,
+                this.frameCounter * this.width,0,
                 this.width,
                 this.height,
                 this.x,
@@ -55,9 +44,11 @@ var Lightning = (function () {
             if (this.frameCounter >= this.frames) {
                 this.frameCounter = constants.lightningFrameOptions.frameCounter;
             }
+
+            return this;
         }
 
-
+        return this;
     };
 
     function checkRequestAnimationFrame() {
