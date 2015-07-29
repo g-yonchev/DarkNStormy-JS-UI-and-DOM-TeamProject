@@ -60,8 +60,6 @@ var Lightning = (function () {
 
     };
 
-
-
     function checkRequestAnimationFrame() {
         if (!window.requestAnimationFrame) {
 
