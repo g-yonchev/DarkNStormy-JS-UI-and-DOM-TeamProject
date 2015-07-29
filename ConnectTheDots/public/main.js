@@ -196,16 +196,14 @@ someSocket.on('set up game', function () {
                     var y = $position.top;
 
                     var browser = navigator.checkBrowser;
-
-                    alert('x: ' + x + ' y: ' + y);
-
-                    // check Firefox
-                    if (browser.contains('Firefox')) {
-                        x = x - 490;
+                    //alert(browser);
+                    if (browser === 'Firefox 39') {
+                        x = x -490;
                         y = y + 10;
-                        alert('I am mozilla :)')
+                        //alert('mozila')
                     }
 
+                    //alert('x: ' + x + ' y: ' + y);
                     var rectToFill = paper.rect(x, y, constants.squareSize.width, constants.squareSize.height);
 
                     var colorToUse = players[currentPlayerTurn].color;
