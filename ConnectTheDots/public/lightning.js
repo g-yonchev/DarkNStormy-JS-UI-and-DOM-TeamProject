@@ -2,38 +2,25 @@ var Lightning = (function () {
     var Lightning = function (options) {
         options = options || {};
 
-        this.width = options.width || 128;
-        this.height = options.height || 118;
-        this.x = options.x || 0;
-        this.y = options.y || 0;
+        var delta = constants.lightningUpdates.lightningDelta;
+        var update = constants.lightningUpdates.lightningUpdate;
 
-        this.frames = options.frames || 30;
-        this.renderSpeed = options.renderSpeed|| 18;
-        this.image = options.image || new Image();
-        this.image.src = 'lightning_0.png';
-        this.frameCounter = 0;
-        this.tickCounter = 0;
+        this.width = options.width || constants.lightningSize.width;
+        this.height = options.height || constants.lightningSize.height;
+        this.x = options.x || constants.lightningCoordinates.x;
+        this.y = options.y || constants.lightningCoordinates.y;
+
+        this.frames = options.frames || constants.lightningFrameOptions.frames;
+        this.renderSpeed = options.renderSpeed || constants.lightningFrameOptions.renderSpeed;
+        this.image = options.image || constants.lightningSpriteOptions.image;
+        this.image.src = constants.lightningSpriteOptions.imageSrc;
+        this.frameCounter = constants.lightningFrameOptions.frameCounter;
+        this.tickCounter = constants.lightningFrameOptions.tickCounter;
         this.context = $('canvas')[0].getContext('2d');
 
-        var delta = Math.random();
-        var update = 900;
-        var secondDelta = Math.random();
-        var secondUpdate = 400;
-        var thirdDelta = Math.random();
-        var thirdUpdate = 750;
+
         this.move = function () {
             this.x = delta * update;
-            //if (this.x >= 900) {
-            //    this.image.src = 'lightning_0.png';
-            //    delta *= -1;
-            //    update *= -1;
-            //}
-            //if (this.x === 0) {
-            //    this.image.src = 'lightning_0.png';
-            //    delta *= -1;
-            //    update *= -1;
-            //}
-
         };
 
 
@@ -61,19 +48,17 @@ var Lightning = (function () {
                 this.height
             );
             this.tickCounter++;
-            if (this.tickCounter % this.renderSpeed == 0) {
+            if (this.tickCounter % this.renderSpeed == constants.lightningFrameOptions.renderEndPoint) {
                 this.frameCounter++;
             }
 
             if (this.frameCounter >= this.frames) {
-                this.frameCounter = 0;
+                this.frameCounter = constants.lightningFrameOptions.frameCounter;
             }
         }
 
-       
+
     };
-
-
 
     function checkRequestAnimationFrame() {
         if (!window.requestAnimationFrame) {
@@ -103,18 +88,13 @@ var Lightning = (function () {
             lightning.drawSprite();
             lightning.x = Math.random() * 900;
             lightning.drawSprite();
-            //lightning.move();
             animation = requestAnimationFrame(mainLoop);
         };
-        
-       
+
         var anim = setTimeout(function () {
             mainLoop();
         }, 2000);
 
-
-
-      
     });
 }());
 
