@@ -18,7 +18,6 @@ var Lightning = (function () {
         this.tickCounter = constants.lightningFrameOptions.tickCounter;
         this.context = $('canvas')[0].getContext('2d');
 
-
         this.move = function () {
             this.x = delta * update;
             return this;
