@@ -97,9 +97,6 @@ var Lightning = (function () {
 
     $(document).ready(function () {
         var lightning = new Lightning();
-        //var secondLight = new Lightning();
-        //var thirdLight = new Lightning();
-
         var mainLoop = function () {
             $('canvas')[0].getContext('2d').clearRect(0, 0, 1000, 500);
             lightning.move();
