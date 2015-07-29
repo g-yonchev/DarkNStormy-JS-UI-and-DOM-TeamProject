@@ -10,39 +10,39 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div id="chose-level">
-        <p id="team-logo">Dark 'N' Stormy</p>
-        <span id="crew">CREW TEAM 2015</span>
-        <ul id="level-menu">
-            <li class="level" data-level="e">Easy</li>
-            <li class="level" data-level="m">Medium</li>
-            <li class="level" data-level="s">Sado-Mazo</li>
-        </ul>
-        <button id="btn" class="hvr-shutter-out-vertical">P L A Y</button>
+<div id="chose-level">
+    <p id="team-logo">Dark 'N' Stormy</p>
+    <span id="crew">CREW TEAM 2015</span>
+    <ul id="level-menu">
+        <li class="level" data-level="e">Easy</li>
+        <li class="level" data-level="m">Medium</li>
+        <li class="level" data-level="s">Sado-Mazo</li>
+    </ul>
+    <button id="btn" class="hvr-shutter-out-vertical">P L A Y</button>
+</div>
+
+<div id="points-container"></div>
+<div id="svg-container" class="hidden"></div>
+<div id="canvas"></div>
+
+<div id="container" class="hidden"> <h1><i class="fa fa-weixin"></i>Live Chat</h1>
+    <div id="chat-container">
+        <ul id="messages"></ul>
     </div>
+    <form action="">
+        <input id="m" autocomplete="off" placeholder="Enter a message ..."/>
+        <button>Send</button>
+    </form>
+</div>
+<canvas id="lightningcanvas" width="600" height="300" class="hidden"></canvas>
 
-    <div id="points-container"></div>
-    <div id="svg-container" class="hidden"></div>
-    <div id="canvas"></div>
-
-    <div id="container" class="hidden"><h1><i class="fa fa-weixin"></i>Live Chat</h1>
-        <div id="chat-container">
-            <ul id="messages"></ul>
-        </div>
-        <form action="">
-            <input id="m" autocomplete="off" placeholder="Enter a message ..."/>
-            <button><i class="fa fa-weixin"></i></button>
-        </form>
-    </div>
-    <canvas id="lightningcanvas" width="600" height="300" class="hidden"></canvas>
-
-	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.0.2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="generateGrid.js"></script>
-    <script src="generateIds.js"></script>
-    <script src="/main.js"></script>
-    <script src="lightning.js"></script>
+<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.0.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="generateGrid.js"></script>
+<script src="generateIds.js"></script>
+<script src="/main.js"></script>
+<script src="lightning.js"></script>
 </body>
 </html>

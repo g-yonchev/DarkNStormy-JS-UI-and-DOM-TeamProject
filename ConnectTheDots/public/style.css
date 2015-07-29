@@ -175,10 +175,14 @@ form input {
 
 form button {
 	width: 20%;
-border: none;
-	padding: 4px 11px 4px 11px;
+	background: transparent;
+	border: none;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	color: white;
+	border-radius: 3px;
 	margin-left: 5px;
-	font-size: 18px;
+	font-size: 15px;
 }
 
 #messages {
@@ -195,3 +199,4 @@ border: none;
 #messages li:nth-child(odd) {
 	background: #eee;
 }
+
