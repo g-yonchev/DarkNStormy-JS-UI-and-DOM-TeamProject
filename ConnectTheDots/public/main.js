@@ -69,28 +69,34 @@ someSocket.on('set up game', function () {
     var currentPlayerTurn = 0;
     var isPlayerAgain = false;
 
-    var pointsContainer = document.getElementById('points-container');
-    var firstPlayerPointsSpan = document.createElement('span');
-    var secondPlayerPointsSpan = document.createElement('span');
-    firstPlayerPointsSpan.style.display = 'inline-block';
-    firstPlayerPointsSpan.style.marginRight='40px';
-    firstPlayerPointsSpan.style.color = constants.colors.red;
-    secondPlayerPointsSpan.style.display = 'inline-block';
-    secondPlayerPointsSpan.style.marginRight='10px';
-    secondPlayerPointsSpan.style.color = constants.colors.blue;
+    var $pointsContainer = $('#points-container');
+    var $firstPlayerPointsSpan = $('<span/>');
+    var $secondPlayerPointsSpan = $('<span/>');
 
-    pointsContainer.appendChild(firstPlayerPointsSpan);
-    pointsContainer.appendChild(secondPlayerPointsSpan);
+    $firstPlayerPointsSpan.css({
+        'display': 'inline-block',
+        'marginRight': '40px',
+        'color': constants.colors.red
+    });
+
+    $secondPlayerPointsSpan.css({
+        'display': 'inline-block',
+        'marginRight': '10px',
+        'color': constants.colors.blue
+    });
+
+    $pointsContainer
+        .append($firstPlayerPointsSpan)
+        .append($secondPlayerPointsSpan);
 
     var showPoints = (function showPoints() {
         var firstPlayerPoints = players[0].color + ': ' + players[0].points;
         var secondPlayerPoints = players[1].color + ': ' + players[1].points;
 
-        firstPlayerPointsSpan.innerText = firstPlayerPoints;
-        secondPlayerPointsSpan.innerText = secondPlayerPoints;
-        //console.log(players[0].color, players[0].points);
-        //console.log(players[1].color, players[1].points);
+        $firstPlayerPointsSpan.html(firstPlayerPoints);
+        $secondPlayerPointsSpan.html(secondPlayerPoints);
     });
+
     showPoints();
 
     var squares = [];
