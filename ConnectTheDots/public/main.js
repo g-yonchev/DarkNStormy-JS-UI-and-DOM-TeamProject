@@ -74,8 +74,8 @@ someSocket.on('set up game', function () {
     var showPoints = (function showPoints() {
         firstPlayerPointsSpan.innerText = players[0].color + ': ' + players[0].points;
         secondPlayerPointsSpan.innerText = players[1].color + ': ' + players[1].points;
-        console.log(players[0].color, players[0].points);
-        console.log(players[1].color, players[1].points);
+        //console.log(players[0].color, players[0].points);
+        //console.log(players[1].color, players[1].points);
     });
     showPoints();
 
@@ -186,7 +186,6 @@ someSocket.on('set up game', function () {
         }
 
         function clicked() {
-
             $(this).attr({ stroke: 'black' });
             $(this).attr({ 'stroke-width': '5' });
             $(this).unbind("mouseover", mouseOver);
@@ -211,7 +210,14 @@ someSocket.on('set up game', function () {
             if (currentPlayerTurn === playersCount) {
                 currentPlayerTurn = 0;
             }
+            socket.emit('player turn', currentPlayerTurn);
         }
+
+        socket.on('player turn', function (turn) {
+            currentPlayerTurn = turn;
+            //console.log('in socket: ', currentPlayerTurn);
+        });
+        //console.log('after socket: ', currentPlayerTurn);
 
         socket.emit('id', currentLineID);
 
@@ -255,7 +261,6 @@ someSocket.on('set up game', function () {
                     var colorToUse = players[currentPlayerTurn].color;
 
                     socket.emit('rect color', colorToUse);
-                    console.log();
 
                     socket.on('rect color', function (color) {
                         if (rectToFill.attr('fill') == 'none') {
@@ -264,7 +269,6 @@ someSocket.on('set up game', function () {
                             });
                         }
                     });
-
 
                     players[currentPlayerTurn].points++;
 
