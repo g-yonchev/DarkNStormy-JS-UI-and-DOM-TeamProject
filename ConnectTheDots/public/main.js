@@ -196,8 +196,8 @@ someSocket.on('set up game', function () {
                     var y = $position.top;
 
                     var browser = navigator.checkBrowser;
-                    alert(browser);
-                    alert('x: ' + x + ' y: ' + y);
+                    //alert(browser);
+                    //alert('x: ' + x + ' y: ' + y);
                     if (browser === 'Firefox 39') {
                         x = x -490;
                         y = y + 10;
