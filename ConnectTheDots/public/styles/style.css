@@ -215,6 +215,7 @@ form button {
 }
 
 form button:hover {
+	cursor: pointer;
 	color: #ffc520;
 }
 

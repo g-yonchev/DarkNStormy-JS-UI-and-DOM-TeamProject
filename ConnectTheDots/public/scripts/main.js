@@ -2,6 +2,9 @@ $(document).ready(function () {
    $('#chose-level').addClass('animated fadeInDown');
 });
 
+var audio = new Audio('../audios/thunder.mp3');
+audio.loop = true;
+
 var rows,
     cols,
     $btn = $('#btn'),
@@ -37,6 +40,7 @@ someSocket.on('difficulty', function (diff) {
 });
 
 $btn.on('click', function () {
+    audio.play();
     someSocket.emit('set up game', null);
 });
 
@@ -231,7 +235,6 @@ someSocket.on('set up game', function () {
                     showPoints();
 
                     isPlayerAgain = true;
-
                     socket.emit('player again', isPlayerAgain);
 
                 }
