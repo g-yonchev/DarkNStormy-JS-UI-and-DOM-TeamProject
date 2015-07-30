@@ -1,0 +1,235 @@
+#svg-container {
+	width: 600px;
+	height: 600px;
+	margin: 0 auto;
+}
+
+body {
+	font-family: 'Shadows Into Light', cursive;
+	margin: 0;
+	padding: 0;
+	background: url("../imgs/dark-n-stormy.jpg");
+	background-size: cover;
+}
+
+#lightningcanvas {
+	position: fixed;
+	top: 465px;
+	pointer-events: none;
+	width: 100%;
+}
+
+.hidden {
+	display: none;
+}
+
+#crew {
+	font-size: 25px;
+	color: #0C1A3C;
+}
+
+#team-logo {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 20px 20px 0px 20px;
+	font-size: 45px;
+	color: #0C1A3C;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-delay: 1s;
+	-moz-animation-duration: 2s;
+	-moz-animation-delay: 1s;
+	-webkit-animation-iteration-count: 2;
+	-moz-animation-iteration-count: 2;
+}
+
+#points-container {
+	text-align: center;
+	font-size: 35px;
+	width: 320px;
+	float: right;
+	text-transform: uppercase;
+	background-color: rgba(255,255,255,0.45);
+	border-radius: 5px;
+}
+
+#level-menu {
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+.level {
+	width: 235px;
+	margin: 0 auto;
+	padding: 60px;
+	margin-top: 10px;
+	padding-bottom: 25px;
+	font-size: 45px;
+	border-bottom: 1px solid #0C1A3C;
+	text-align: center;
+	cursor: pointer;
+	color: #0C1A3C;
+}
+
+.level:hover {
+	color: #374536;
+	border-bottom: 1px solid #374536;
+}
+
+.level-chosen {
+	color: #ffc520;
+	border-bottom: 1px solid #ffc520;
+}
+
+.level-chosen:hover {
+	color: #ffc520;
+	border-bottom: 1px solid #ffc520;
+}
+
+#chose-level {
+	width: 735px;
+	height: 890px;
+	margin: 0 auto;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.4);
+}
+
+#btn {
+	margin-top: 140px;
+	background: #374536;
+	border: 0;
+	font-family: 'Shadows Into Light', cursive;
+	color: #FFF199;
+	font-size: 20px;
+	padding: 10px 26px 10px 26px;
+	text-decoration: none;
+	cursor: pointer;
+	-webkit-animation-iteration-count: infinite;
+	-moz-animation-iteration-count: infinite;
+}
+
+#btn:hover {
+	color: #ffc520;
+	text-decoration: none;
+}
+
+#chat-minimized {
+	font-size: 22px;
+	height: 35px;
+	font-family: cursive;
+	background-color: #5F7786;
+	border-radius: 4px;
+	width: 315px;
+	bottom: 0px;
+	text-align: center;
+	color: white;
+	position: fixed;
+	right: 2px;
+	cursor: pointer;
+}
+
+#chat-minimized:hover {
+	color: #ffc520;
+}
+
+#container {
+	width: 18%;
+	height: 360px;
+	border: 1px solid lightblue;
+	position: fixed;
+	right: 6px;
+	bottom: 2px;
+	border-radius: 11px;
+}
+
+.fa {
+	margin-right: 10px;
+	margin-left: 5px;
+}
+
+#m::-webkit-input-placeholder {
+	font-family: cursive;
+}
+
+#m:-ms-input-placeholder {
+	font-family: cursive;
+}
+
+
+h1 {
+	font-size: 18px;
+	height: 35px;
+	font-family: cursive;
+	background-color: #5F7786;
+	border-radius: 8px;
+	width: 315px;
+	margin: 0 auto;
+	margin-top: 15px;
+	margin-bottom: 0px;
+	color: white;
+	cursor: pointer;
+}
+
+h1:hover {
+	color: #ffc520;
+}
+
+#chat-container {
+	overflow-y: overlay;
+	height: 220px;
+	margin: 25px;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: 1px solid #5F7786;
+	margin-bottom: 0px;
+	margin-top: 18px;
+	border-radius: 11px;
+}
+
+form {
+	padding: 15px;
+	padding-top: 10px;
+	bottom: 0;
+	width: 100%;
+
+}
+
+form input {
+	margin-top: 10px;
+	display: inline-block;
+	padding: 5px 10px 5px 10px;
+	width: 60%;
+	margin-left: 0;
+	border-radius: 4px;
+	border: 0;
+}
+
+form button {
+	width: 20%;
+	background: transparent;
+	border: none;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	color: white;
+	border-radius: 3px;
+	margin-left: 5px;
+	font-size: 15px;
+}
+
+form button:hover {
+	color: #ffc520;
+}
+
+#messages {
+	list-style-type: none;
+	padding: 0;
+	font-size: 15px;
+	font-family: cursive;
+}
+
+#messages li {
+	padding: 5px 10px;
+}
+
+#messages li:nth-child(odd) {
+	background: #eee;
+}
+
