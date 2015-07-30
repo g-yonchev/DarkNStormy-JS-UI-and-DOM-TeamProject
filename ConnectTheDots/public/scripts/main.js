@@ -2,17 +2,18 @@ $(document).ready(function () {
    $('#chose-level').addClass('animated fadeInDown');
 });
 
-var btn = document.getElementById('btn');
-$('#btn').addClass('animated pulse');
-$('#team-logo').addClass('animated flash');
+var rows,
+    cols,
+    $btn = $('#btn'),
+    $level = $('.level'),
+    $teamLogo = $('#team-log'),
+    someSocket = io();
 
-var levels = document.getElementById('level-menu');
+$btn.addClass('animated pulse');
+$teamLogo.addClass('animated flash');
 
-var rows, cols;
-var someSocket = io();
-
-$('.level').on('click', function(){
-    $('.level').removeClass('level-chosen');
+$level.on('click', function(){
+    $level.removeClass('level-chosen');
     $(this).addClass('level-chosen');
     var difficult = $(this).data('level');
     someSocket.emit('difficulty', difficult);
@@ -35,15 +36,21 @@ someSocket.on('difficulty', function (diff) {
     }
 });
 
-btn.addEventListener('click', function () {
+$btn.on('click', function () {
     someSocket.emit('set up game', null);
 });
 
 someSocket.on('set up game', function () {
-    $('#chat-minimized').removeClass('hidden');
-    $('#svg-container').removeClass('hidden');
-    $('#chose-level').addClass('hidden');
-    $('#lightningcanvas').removeClass('hidden');
+    var $chatMinimized = $('#chat-minimized'),
+        $svgContainer = $('#svg-container'),
+        $choseLevel = $('#chose-level'),
+        $lightingCanvas = $('#lightningcanvas'),
+        $chatHeader = $('h1');
+
+    $chatMinimized.removeClass('hidden');
+    $svgContainer.removeClass('hidden');
+    $choseLevel.addClass('hidden');
+    $lightingCanvas.removeClass('hidden');
 
     var paper = Raphael('svg-container', constants.svgSize.width, constants.svgSize.height);
 
@@ -55,15 +62,15 @@ someSocket.on('set up game', function () {
         points: 0
     }];
 
-    $('#chat-minimized').on('click', function () {
+    $chatMinimized.on('click', function () {
         $('#container').removeClass('hidden').addClass('animated fadeInUp');
         $('#chat-minimized').addClass('hidden');
     });
 
-    $('h1').on('click', function (){
+    $chatHeader.on('click', function (){
         $('#container').addClass('animated fadeInDown').addClass('hidden');
         $('#chat-minimized').removeClass('hidden');
-    })
+    });
 
     var playersCount = players.length;
     var currentPlayerTurn = 0;
@@ -90,8 +97,8 @@ someSocket.on('set up game', function () {
         .append($secondPlayerPointsSpan);
 
     var showPoints = (function showPoints() {
-        var firstPlayerPoints = players[0].color + ': ' + players[0].points;
-        var secondPlayerPoints = players[1].color + ': ' + players[1].points;
+        var firstPlayerPoints = players[0].color + ': ' + players[0].points,
+            secondPlayerPoints = players[1].color + ': ' + players[1].points;
 
         $firstPlayerPointsSpan.html(firstPlayerPoints);
         $secondPlayerPointsSpan.html(secondPlayerPoints);
