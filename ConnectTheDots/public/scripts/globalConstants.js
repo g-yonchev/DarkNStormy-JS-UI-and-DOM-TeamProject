@@ -57,7 +57,6 @@ var constants = (function() {
         imageSrc: '/imgs/lightning_sprite.png'
     };
 
-
     return {
         colors: colors,
         gridSize: gridSize,

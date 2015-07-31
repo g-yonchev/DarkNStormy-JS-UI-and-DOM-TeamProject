@@ -1,4 +1,4 @@
-var Lightning = (function () {
+(function () {
     var Lightning = function (options) {
         options = options || {};
 
@@ -84,5 +84,3 @@ var Lightning = (function () {
 
     });
 }());
-
-
